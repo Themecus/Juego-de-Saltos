@@ -1,9 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://b887ekrhmkug"]
+[gd_scene load_steps=5 format=3 uid="uid://b887ekrhmkug"]
 
 [ext_resource type="PackedScene" uid="uid://b8jq0dcmlr24f" path="res://Scene/player.tscn" id="1_h6kpu"]
+[ext_resource type="PackedScene" uid="uid://cu7y2weyhcwb1" path="res://Scene/worm.tscn" id="1_igji4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v5e0y"]
 size = Vector2(509, 46.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i8nby"]
+size = Vector2(40, 40.244)
 
 [node name="Pruebas" type="Node2D"]
 position = Vector2(585, 446)
@@ -23,5 +27,38 @@ offset_right = 251.0
 offset_bottom = 30.0
 metadata/_edit_use_anchors_ = true
 
+[node name="worm" parent="." instance=ExtResource("1_igji4")]
+position = Vector2(-292.101, -237.088)
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="." groups=["muralla"]]
+position = Vector2(24.7694, -41.5885)
+
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D3"]
+offset_left = -10.0
+offset_top = -9.0
+offset_right = 30.0
+offset_bottom = 31.0
+color = Color(0, 1, 1, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+position = Vector2(10.5, 11.878)
+shape = SubResource("RectangleShape2D_i8nby")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="." groups=["muralla"]]
+position = Vector2(-405.028, -40.0025)
+
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D2"]
+offset_left = -10.0
+offset_top = -9.0
+offset_right = 30.0
+offset_bottom = 31.0
+color = Color(0, 1, 1, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(10.5, 11.878)
+shape = SubResource("RectangleShape2D_i8nby")
+
 [node name="Player" parent="." instance=ExtResource("1_h6kpu")]
-position = Vector2(-45, -94)
+position = Vector2(-508.364, -71.7193)
