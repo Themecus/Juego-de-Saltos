@@ -74,7 +74,6 @@ func move_stun():
 	damage_zone.monitorable=false
 
 func move_attack(delta):
-	
 	velocity.x = 0
 	if is_instance_valid(player) and player:
 		global_position.y = lerp(global_position.y, 0.0, 0.1 * delta * -30)#con esto podemos hacer movimiento indifenido suavizado
