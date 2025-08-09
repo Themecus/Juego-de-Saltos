@@ -1,11 +1,12 @@
 extends CharacterBody2D
 
 
-const speed = 100.0
+const speed = 80.0
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var sides:int=1
 var life=true
 @onready var animat=$AnimatedSprite2D
+@onready var collision_spikes=$zone_damage
 
 func _physics_process(delta):
 	
@@ -29,9 +30,10 @@ func move_die():
 
 func _on_zone_damage_body_entered(body):
 	if body.is_in_group("muralla"):
-		animat.flip_h=!animat.flip_h
+		scale.x *= -1#si solo ponemos esto, es un giro universal para la escena
 		sides*=-1
 
 
 func _on_body_hitbox_area_entered(area):
 	life=false
+

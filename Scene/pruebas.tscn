@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://b887ekrhmkug"]
+[gd_scene load_steps=6 format=3 uid="uid://b887ekrhmkug"]
 
 [ext_resource type="PackedScene" uid="uid://b8jq0dcmlr24f" path="res://Scene/player.tscn" id="1_h6kpu"]
-[ext_resource type="PackedScene" uid="uid://cu7y2weyhcwb1" path="res://Scene/worm.tscn" id="1_igji4"]
+[ext_resource type="PackedScene" uid="uid://doceqitu6xskj" path="res://Scene/mosquito.tscn" id="2_kcalw"]
+[ext_resource type="Texture2D" uid="uid://pryloxtjpy5n" path="res://img/Captura de pantalla 2025-08-07 193138.png" id="4_wogk2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v5e0y"]
 size = Vector2(509, 46.5)
@@ -12,7 +13,7 @@ size = Vector2(40, 40.244)
 [node name="Pruebas" type="Node2D"]
 position = Vector2(585, 446)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="StaticBody2D" type="StaticBody2D" parent="." groups=["suelo"]]
 position = Vector2(1, -2)
 scale = Vector2(2.29673, 1)
 
@@ -27,11 +28,8 @@ offset_right = 251.0
 offset_bottom = 30.0
 metadata/_edit_use_anchors_ = true
 
-[node name="worm" parent="." instance=ExtResource("1_igji4")]
-position = Vector2(-292.101, -237.088)
-
 [node name="StaticBody2D3" type="StaticBody2D" parent="." groups=["muralla"]]
-position = Vector2(24.7694, -41.5885)
+position = Vector2(446.815, -41.5885)
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D3"]
 offset_left = -10.0
@@ -46,7 +44,7 @@ position = Vector2(10.5, 11.878)
 shape = SubResource("RectangleShape2D_i8nby")
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="." groups=["muralla"]]
-position = Vector2(-405.028, -40.0025)
+position = Vector2(176.407, -44.4924)
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D2"]
 offset_left = -10.0
@@ -61,4 +59,11 @@ position = Vector2(10.5, 11.878)
 shape = SubResource("RectangleShape2D_i8nby")
 
 [node name="Player" parent="." instance=ExtResource("1_h6kpu")]
-position = Vector2(-508.364, -71.7193)
+position = Vector2(101.133, -71.7193)
+
+[node name="mosquito" parent="." instance=ExtResource("2_kcalw")]
+position = Vector2(-294.319, -418.955)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(297.341, -485.07)
+texture = ExtResource("4_wogk2")

@@ -43,3 +43,4 @@ attack={
 2d_physics/layer_4="enemies"
 2d_physics/layer_5="attack_enemies"
 2d_physics/layer_6="player"
+2d_physics/layer_7="dete"

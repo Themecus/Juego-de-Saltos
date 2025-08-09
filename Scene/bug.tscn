@@ -1,0 +1,88 @@
+[gd_scene load_steps=12 format=3 uid="uid://cqbuggwpmsdci"]
+
+[ext_resource type="Script" path="res://Scripts/bug.gd" id="1_m1rdn"]
+[ext_resource type="Texture2D" uid="uid://blmptqhjccwpi" path="res://img/Enemigo Escarapincho.png" id="2_45jrm"]
+[ext_resource type="Texture2D" uid="uid://c1noibbtsx02a" path="res://img/Enemigo Objeto Escarapincho.png" id="2_yncyi"]
+[ext_resource type="Texture2D" uid="uid://cihu1ni20x3j4" path="res://img/Enemigo Caminando Escarapincho.png" id="3_h0ehh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ts6wg"]
+size = Vector2(141.955, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ptvnw"]
+atlas = ExtResource("2_yncyi")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gx40d"]
+atlas = ExtResource("2_45jrm")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kdnf7"]
+atlas = ExtResource("3_h0ehh")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qg1dj"]
+atlas = ExtResource("3_h0ehh")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tge8q"]
+atlas = ExtResource("3_h0ehh")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qkvg6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ptvnw")
+}],
+"loop": true,
+"name": &"die",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gx40d")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kdnf7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qg1dj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tge8q")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 8.0
+}]
+
+[node name="bug" type="CharacterBody2D"]
+script = ExtResource("1_m1rdn")
+
+[node name="body_solid" type="CollisionShape2D" parent="."]
+position = Vector2(1.436, 0.6716)
+shape = SubResource("RectangleShape2D_ts6wg")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(28.2183, -24.8284)
+scale = Vector2(2.86719, 2.57812)
+sprite_frames = SubResource("SpriteFrames_qkvg6")
+animation = &"die"
+
+[node name="zone_damage" type="Area2D" parent="."]
+position = Vector2(0, 0.629959)
+collision_layer = 17
+collision_mask = 33
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="zone_damage"]
+position = Vector2(-2.96365, -2.57517)
+scale = Vector2(1.0191, 0.973323)
+polygon = PackedVector2Array(-67.9948, -5.04214, -62.2189, -46.5114, -36.0577, -33.1538, -45.7967, -70.2369, -18.8272, -47.0132, -10.5865, -78.103, 1.02541, -47.7623, 48.5967, -73.9827, 36.2356, -36.1504, 100.663, -48.886, 79.7039, 4.89321)
+
+[connection signal="body_entered" from="zone_damage" to="." method="_on_zone_damage_body_entered"]

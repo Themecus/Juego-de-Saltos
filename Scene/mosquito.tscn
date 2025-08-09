@@ -1,0 +1,100 @@
+[gd_scene load_steps=9 format=3 uid="uid://doceqitu6xskj"]
+
+[ext_resource type="Script" path="res://Scripts/mosquito.gd" id="1_kymsx"]
+[ext_resource type="Texture2D" uid="uid://c1kidxevj2wlr" path="res://img/Enemigo Caminando Mosquito.png" id="1_xwcx2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5l8gg"]
+atlas = ExtResource("1_xwcx2")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_da1cm"]
+atlas = ExtResource("1_xwcx2")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4geiw"]
+atlas = ExtResource("1_xwcx2")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7f4ch"]
+atlas = ExtResource("1_xwcx2")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2yor4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5l8gg")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_da1cm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4geiw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7f4ch")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 13.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_44x7v"]
+radius = 269.311
+
+[node name="mosquito" type="CharacterBody2D"]
+script = ExtResource("1_kymsx")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(2.80618, -0.382591)
+scale = Vector2(2.27873, 1.97779)
+sprite_frames = SubResource("SpriteFrames_2yor4")
+animation = &"walk"
+frame_progress = 0.202077
+
+[node name="detection_zone" type="Area2D" parent="."]
+collision_layer = 64
+collision_mask = 32
+
+[node name="detection" type="CollisionShape2D" parent="detection_zone"]
+position = Vector2(-16.0362, -31.1815)
+shape = SubResource("CircleShape2D_44x7v")
+
+[node name="body_hitbox" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 4
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="body_hitbox"]
+polygon = PackedVector2Array(-80.6391, -11.8258, -16.6587, -66.2652, 31.0459, -34.2751)
+
+[node name="cooldown" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="zone_damage" type="Area2D" parent="."]
+collision_layer = 17
+collision_mask = 33
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="zone_damage"]
+position = Vector2(-1.33636, -0.925457)
+scale = Vector2(1, 1.15086)
+polygon = PackedVector2Array(4.3728, -24.4997, 3.48193, 10.0935, -14.3361, -23.1634)
+
+[node name="cooldown2" type="Timer" parent="."]
+wait_time = 1.5
+
+[node name="cooldown3" type="Timer" parent="."]
+wait_time = 2.0
+
+[connection signal="area_entered" from="detection_zone" to="." method="_on_detection_zone_area_entered"]
+[connection signal="area_exited" from="detection_zone" to="." method="_on_detection_zone_area_exited"]
+[connection signal="area_entered" from="body_hitbox" to="." method="_on_zone_hitbox_area_entered"]
+[connection signal="timeout" from="cooldown" to="." method="_on_cooldown_timeout"]
+[connection signal="body_entered" from="zone_damage" to="." method="_on_zone_damage_body_entered"]
+[connection signal="timeout" from="cooldown2" to="." method="_on_cooldown_2_timeout"]
+[connection signal="timeout" from="cooldown3" to="." method="_on_cooldown_3_timeout"]
