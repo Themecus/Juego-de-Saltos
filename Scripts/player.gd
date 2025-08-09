@@ -4,6 +4,7 @@ const speed = 300.0
 const jump_velocity = -500.0
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var current_state:STATE=STATE.IDLE
+var double_jump=false
 @onready var zone_damage=$zone_damage
 @onready var animat=$AnimatedSprite2D
 enum STATE{#con esta maquina de estados controlaremos sus acciones
@@ -62,8 +63,9 @@ func move_jump():
 	else:
 		zone_damage.monitoring = false
 		zone_damage.monitorable = false
-	if Input.is_action_pressed("jump") and is_on_floor():#para saltar
+	if Input.is_action_pressed("jump") and is_on_floor() or double_jump==true:#para saltar
 		velocity.y = jump_velocity
+		double_jump=false
 
 func move_gravity(delta):
 	if not is_on_floor():#Esto actua como gravedad para personaje, sin este se queda tieso en el aire
@@ -93,6 +95,14 @@ func move_walk():
 func _on_body_hitbox_area_entered(area):
 	queue_free()
 
+func _on_zone_damage_area_entered(area):
+	double_jump=true
+	if is_on_floor():
+		double_jump=false
+	if velocity.y > 0:  # Jugador moviéndose hacia abajo
+			velocity.y = -300  # Ajusta este valor para la altura del rebote
+
+
 
 #func move_attack():
 		#animat.play("attack")
@@ -105,6 +115,9 @@ func _on_body_hitbox_area_entered(area):
 		#else:
 			# Mantenerse en estado de ataque
 			#velocity.x = move_toward(velocity.x, 0, speed)
+
+
+
 
 
 
