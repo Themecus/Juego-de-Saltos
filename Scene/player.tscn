@@ -97,6 +97,10 @@ size = Vector2(20, 123.5)
 size = Vector2(66.5956, 119.674)
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
+position = Vector2(2.66968, 10.6787)
+scale = Vector2(0.605469, 0.59681)
+collision_layer = 32
+collision_mask = 384
 script = ExtResource("1_6fwbh")
 
 [node name="body_solid" type="CollisionShape2D" parent="."]
@@ -130,11 +134,16 @@ metadata/_edit_use_anchors_ = true
 
 [node name="body_hitbox" type="Area2D" parent="."]
 collision_layer = 32
-collision_mask = 16
+collision_mask = 272
 
 [node name="hitbox" type="CollisionShape2D" parent="body_hitbox"]
 position = Vector2(-3.60887, -19.0501)
 shape = SubResource("RectangleShape2D_471w3")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+rotation = 0.00307906
+scale = Vector2(0.119301, -3.50789)
+zoom = Vector2(1.5, 2)
 
 [connection signal="area_entered" from="zone_damage" to="." method="_on_zone_damage_area_entered"]
 [connection signal="area_entered" from="body_hitbox" to="." method="_on_body_hitbox_area_entered"]
