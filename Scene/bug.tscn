@@ -62,6 +62,8 @@ animations = [{
 }]
 
 [node name="bug" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 128
 script = ExtResource("1_m1rdn")
 
 [node name="body_solid" type="CollisionShape2D" parent="."]
@@ -75,7 +77,7 @@ scale = Vector2(2.86719, 2.57812)
 sprite_frames = SubResource("SpriteFrames_qkvg6")
 animation = &"die"
 
-[node name="zone_damage" type="Area2D" parent="."]
+[node name="zone_damage" type="Area2D" parent="." groups=["dmg"]]
 position = Vector2(0, 0.629959)
 collision_layer = 17
 collision_mask = 33

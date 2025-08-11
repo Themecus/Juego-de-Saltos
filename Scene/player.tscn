@@ -134,7 +134,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="body_hitbox" type="Area2D" parent="."]
 collision_layer = 32
-collision_mask = 272
+collision_mask = 784
 
 [node name="hitbox" type="CollisionShape2D" parent="body_hitbox"]
 position = Vector2(-3.60887, -19.0501)
@@ -145,5 +145,9 @@ rotation = 0.00307906
 scale = Vector2(0.119301, -3.50789)
 zoom = Vector2(1.5, 2)
 
+[node name="cooldown_hit" type="Timer" parent="."]
+wait_time = 3.0
+
 [connection signal="area_entered" from="zone_damage" to="." method="_on_zone_damage_area_entered"]
 [connection signal="area_entered" from="body_hitbox" to="." method="_on_body_hitbox_area_entered"]
+[connection signal="timeout" from="cooldown_hit" to="." method="_on_cooldown_hit_timeout"]

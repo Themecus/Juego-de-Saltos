@@ -6,8 +6,15 @@ const jump_velocity = -500.0
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var current_state:STATE=STATE.IDLE
 var double_jump=false
+var die=true
+var frames_invenciblity=false
+
+var can_take_damage: bool = true
+var invincibility_time: float = 2.0  # 2 segundos de invencibilidad
 @onready var zone_damage=$zone_damage
 @onready var animat=$AnimatedSprite2D
+@onready var timer=$cooldown_hit
+@onready var blink_timer = $BlinkTimer  # Referencia al Timer creado en el editor
 enum STATE{#con esta maquina de estados controlaremos sus acciones
 	IDLE,
 	WALK,
@@ -66,18 +73,6 @@ func move_run(delta):
 	else:#esto lo que hace es que cuando dejemos de movernos limpie velocity.x con un zero y no alla residuos
 		velocity.x = move_toward(velocity.x, 0, run_speed)
 
-func move_walk():
-	if is_on_floor():
-		animat.play("walk")
-		if Input.is_action_pressed("right"):
-			animat.flip_h=false
-		if Input.is_action_pressed("left"):
-			animat.flip_h=true
-	var direction = Input.get_axis("left", "right")# con esto sabremos a que lado esta yendo
-	if direction:#dependiendo de la direccion se movera de una u otra lado
-		velocity.x = direction * speed
-	else:#esto lo que hace es que cuando dejemos de movernos limpie velocity.x con un zero y no alla residuos
-		velocity.x = move_toward(velocity.x, 0, speed)
 
 func move_jump():
 	if not is_on_floor():
@@ -91,6 +86,19 @@ func move_jump():
 		velocity.y = jump_velocity
 		double_jump=false
 
+func move_walk():
+	if is_on_floor():
+		animat.play("walk")
+		if Input.is_action_pressed("right"):
+			animat.flip_h=false
+		if Input.is_action_pressed("left"):
+			animat.flip_h=true
+	var direction = Input.get_axis("left", "right")# con esto sabremos a que lado esta yendo
+	if direction:#dependiendo de la direccion se movera de una u otra lado
+		velocity.x = direction * speed
+	else:#esto lo que hace es que cuando dejemos de movernos limpie velocity.x con un zero y no alla residuos
+		velocity.x = move_toward(velocity.x, 0, speed)
+
 func move_gravity(delta):
 	if not is_on_floor():#Esto actua como gravedad para personaje, sin este se queda tieso en el aire
 		velocity.y += gravity * delta
@@ -100,16 +108,53 @@ func move_idle():
 	zone_damage.monitoring = false
 	zone_damage.monitorable = false
 
-func move_stop_animat():
-	animat.pause()
-
 func _on_body_hitbox_area_entered(area):
 	if area.is_in_group("wall"):
-		double_jump=true
-	elif is_on_floor():
-		double_jump=false
-	else:
+		double_jump = true
+		return  # Salimos de la función después de detectar pared
+	
+	if area.is_in_group("dmg") and can_take_damage:
+		take_damage()
+		return
+	
+	if is_on_floor():
+		double_jump = false
+		return
+
+# Nueva función para manejar el daño
+func take_damage():
+	can_take_damage = false
+	start_invincibility_effect()
+	# Iniciar temporizador de invencibilidad
+	timer.start(invincibility_time)
+	
+	if !die:
 		queue_free()
+	if die:
+		die=false
+	#agrega aqui la funcion para remover y agregar los poweups
+
+func _on_cooldown_hit_timeout():
+	can_take_damage = true
+	print("¡Ya puedes recibir daño nuevamente!")
+
+# Función para efectos durante la invencibilidad
+func start_invincibility_effect():
+	# Ejemplo: hacer parpadear el sprite
+	var blink_timer = Timer.new()
+	add_child(blink_timer)
+	blink_timer.wait_time = 0.1
+	blink_timer.timeout.connect(toggle_visibility)
+	blink_timer.start()
+	
+	# Detener el parpadeo cuando termine la invencibilidad
+	await get_tree().create_timer(invincibility_time).timeout
+	blink_timer.stop()
+	blink_timer.queue_free()
+	animat.visible = true
+
+func toggle_visibility():
+	animat.visible = not animat.visible
 
 func _on_zone_damage_area_entered(area):
 	double_jump=true
@@ -117,3 +162,6 @@ func _on_zone_damage_area_entered(area):
 		double_jump=false
 	if velocity.y > 0:  # Jugador moviéndose hacia abajo
 			velocity.y = -300  # Ajusta este valor para la altura del rebote
+
+
+

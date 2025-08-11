@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://ccmuwr1ikv1wk"]
+[gd_scene load_steps=8 format=3 uid="uid://ccmuwr1ikv1wk"]
 
 [ext_resource type="Texture2D" uid="uid://dx0rqesak770a" path="res://img/Suelo Tierra.png" id="1_jhm4s"]
 [ext_resource type="PackedScene" uid="uid://b8jq0dcmlr24f" path="res://Scene/player.tscn" id="2_ll5xi"]
@@ -355,6 +355,7 @@ texture = ExtResource("1_jhm4s")
 12:10/0/physics_layer_0/angular_velocity = 0.0
 12:10/0/physics_layer_1/linear_velocity = Vector2(0, 0)
 12:10/0/physics_layer_1/angular_velocity = 0.0
+12:10/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:11/0 = 0
 1:11/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:11/0/physics_layer_0/angular_velocity = 0.0
@@ -406,6 +407,7 @@ texture = ExtResource("1_jhm4s")
 12:11/0/physics_layer_0/angular_velocity = 0.0
 12:11/0/physics_layer_1/linear_velocity = Vector2(0, 0)
 12:11/0/physics_layer_1/angular_velocity = 0.0
+12:11/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 10:1/0 = 0
 10:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 10:1/0/physics_layer_0/angular_velocity = 0.0
@@ -423,6 +425,9 @@ sources/0 = SubResource("TileSetAtlasSource_t6xms")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q1nr2"]
 size = Vector2(58.3225, 302.459)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_loyey"]
+size = Vector2(91.8823, 113.527)
+
 [node name="Node2D" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -436,7 +441,7 @@ layer_1/name = "wall"
 layer_1/tile_data = PackedInt32Array(-458723, 589824, 10, -393187, 589824, 11, -327651, 589824, 10, -262115, 589824, 11, -196579, 589824, 10, -131043, 589824, 11, -917480, 786432, 10, -851944, 786432, 11, -786408, 786432, 10, -720872, 786432, 11, -655336, 786432, 10, -589800, 786432, 11, -524264, 786432, 10, -458728, 786432, 11)
 
 [node name="Player" parent="." instance=ExtResource("2_ll5xi")]
-position = Vector2(917.035, -78.8032)
+position = Vector2(77.9829, -116.261)
 
 [node name="Area2D" type="Area2D" parent="." groups=["wall"]]
 position = Vector2(1079.42, -159.597)
@@ -455,3 +460,11 @@ collision_mask = 32
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
 position = Vector2(-195.594, -265.394)
 shape = SubResource("RectangleShape2D_q1nr2")
+
+[node name="Area2D3" type="Area2D" parent="." groups=["dmg"]]
+collision_layer = 512
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D3"]
+position = Vector2(222.508, -99.3438)
+shape = SubResource("RectangleShape2D_loyey")
