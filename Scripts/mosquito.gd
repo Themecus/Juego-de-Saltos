@@ -76,12 +76,12 @@ func move_stun():
 func move_attack(delta):
 	velocity.x = 0
 	if is_instance_valid(player) and player:
-		global_position.y = lerp(global_position.y, 0.0, 0.1 * delta * -30)#con esto podemos hacer movimiento indifenido suavizado
+		global_position.y = lerp(global_position.y, 0.0, 0.1 * delta * 30)#con esto podemos hacer movimiento indifenido suavizado
 
 func move_detection():
 	if is_instance_valid(player) and player:
 		global_position.x = lerp(global_position.x, player.global_position.x, 0.1)
-		global_position.y = lerp(global_position.y, 150.0, 0.1)
+		global_position.y = lerp(global_position.y, player.global_position.y-150, 0.1)
 
 	#los lerps funcionan para suavizar el movimiento lerp(valor_actual, valor_objetivo, factor_interpolacion)
 	#el primer valor es con el que se esta igualando, el segundo el valor obejtivo como lo seria la velocidad

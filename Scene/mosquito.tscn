@@ -76,7 +76,7 @@ polygon = PackedVector2Array(-80.6391, -11.8258, -16.6587, -66.2652, 31.0459, -3
 [node name="cooldown" type="Timer" parent="."]
 wait_time = 2.0
 
-[node name="zone_damage" type="Area2D" parent="."]
+[node name="zone_damage" type="Area2D" parent="." groups=["dmg"]]
 collision_layer = 17
 collision_mask = 33
 

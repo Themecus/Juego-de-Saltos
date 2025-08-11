@@ -1,8 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://b887ekrhmkug"]
+[gd_scene load_steps=4 format=3 uid="uid://b887ekrhmkug"]
 
 [ext_resource type="PackedScene" uid="uid://b8jq0dcmlr24f" path="res://Scene/player.tscn" id="1_h6kpu"]
-[ext_resource type="PackedScene" uid="uid://doceqitu6xskj" path="res://Scene/mosquito.tscn" id="2_kcalw"]
-[ext_resource type="Texture2D" uid="uid://pryloxtjpy5n" path="res://img/Captura de pantalla 2025-08-07 193138.png" id="4_wogk2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v5e0y"]
 size = Vector2(509, 46.5)
@@ -60,10 +58,3 @@ shape = SubResource("RectangleShape2D_i8nby")
 
 [node name="Player" parent="." instance=ExtResource("1_h6kpu")]
 position = Vector2(101.133, -71.7193)
-
-[node name="mosquito" parent="." instance=ExtResource("2_kcalw")]
-position = Vector2(-294.319, -418.955)
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(297.341, -485.07)
-texture = ExtResource("4_wogk2")

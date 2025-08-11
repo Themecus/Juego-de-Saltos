@@ -134,6 +134,8 @@ size = Vector2(61.5487, 1.45036)
 [node name="worm" type="CharacterBody2D"]
 position = Vector2(0, 1)
 scale = Vector2(1.50862, 1.31126)
+collision_layer = 0
+collision_mask = 128
 script = ExtResource("1_tnbpc")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -147,7 +149,7 @@ position = Vector2(1.32571, -7.62626)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_t5y7m")
 
-[node name="zone_damage" type="Area2D" parent="."]
+[node name="zone_damage" type="Area2D" parent="." groups=["dmg"]]
 collision_layer = 17
 collision_mask = 33
 
