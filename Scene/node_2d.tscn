@@ -1,7 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://ccmuwr1ikv1wk"]
+[gd_scene load_steps=11 format=3 uid="uid://ccmuwr1ikv1wk"]
 
 [ext_resource type="Texture2D" uid="uid://dx0rqesak770a" path="res://img/Suelo Tierra.png" id="1_jhm4s"]
 [ext_resource type="PackedScene" uid="uid://b8jq0dcmlr24f" path="res://Scene/player.tscn" id="2_ll5xi"]
+[ext_resource type="PackedScene" uid="uid://dt5yvq2jvcd7x" path="res://Scene/puerta.tscn" id="4_chaai"]
+[ext_resource type="PackedScene" uid="uid://3y3ycudu31cs" path="res://Scene/box1.tscn" id="4_csr82"]
+[ext_resource type="PackedScene" uid="uid://bv1wwjanl6iqp" path="res://Scene/box_2.tscn" id="5_532s7"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_1q134"]
 
@@ -441,7 +444,7 @@ layer_1/name = "wall"
 layer_1/tile_data = PackedInt32Array(-458723, 589824, 10, -393187, 589824, 11, -327651, 589824, 10, -262115, 589824, 11, -196579, 589824, 10, -131043, 589824, 11, -917480, 786432, 10, -851944, 786432, 11, -786408, 786432, 10, -720872, 786432, 11, -655336, 786432, 10, -589800, 786432, 11, -524264, 786432, 10, -458728, 786432, 11)
 
 [node name="Player" parent="." instance=ExtResource("2_ll5xi")]
-position = Vector2(77.9829, -116.261)
+position = Vector2(341.005, -93.595)
 
 [node name="Area2D" type="Area2D" parent="." groups=["wall"]]
 position = Vector2(1079.42, -159.597)
@@ -462,9 +465,18 @@ position = Vector2(-195.594, -265.394)
 shape = SubResource("RectangleShape2D_q1nr2")
 
 [node name="Area2D3" type="Area2D" parent="." groups=["dmg"]]
-collision_layer = 512
+collision_layer = 16
 collision_mask = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D3"]
-position = Vector2(222.508, -99.3438)
+position = Vector2(-188.028, -68.6285)
 shape = SubResource("RectangleShape2D_loyey")
+
+[node name="puerta" parent="." instance=ExtResource("4_chaai")]
+position = Vector2(467.15, -88.3394)
+
+[node name="box1" parent="." instance=ExtResource("4_csr82")]
+position = Vector2(176.468, -201.477)
+
+[node name="box2" parent="." instance=ExtResource("5_532s7")]
+position = Vector2(253.573, -200.543)

@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dt5yvq2jvcd7x"]
+
+[ext_resource type="Script" path="res://Scripts/puerta.gd" id="1_6lbga"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_to0cr"]
+size = Vector2(67, 76)
+
+[node name="puerta" type="Area2D"]
+collision_layer = 512
+collision_mask = 32
+script = ExtResource("1_6lbga")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -1)
+shape = SubResource("RectangleShape2D_to0cr")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://b887ekrhmkug"]
+[gd_scene load_steps=5 format=3 uid="uid://b887ekrhmkug"]
 
 [ext_resource type="PackedScene" uid="uid://b8jq0dcmlr24f" path="res://Scene/player.tscn" id="1_h6kpu"]
+[ext_resource type="PackedScene" uid="uid://dgfrxfkg5kfqm" path="res://Scene/coin.tscn" id="2_j57f4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v5e0y"]
 size = Vector2(509, 46.5)
@@ -14,6 +15,8 @@ position = Vector2(585, 446)
 [node name="StaticBody2D" type="StaticBody2D" parent="." groups=["suelo"]]
 position = Vector2(1, -2)
 scale = Vector2(2.29673, 1)
+collision_layer = 128
+collision_mask = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(-1.5, 4.25)
@@ -58,3 +61,6 @@ shape = SubResource("RectangleShape2D_i8nby")
 
 [node name="Player" parent="." instance=ExtResource("1_h6kpu")]
 position = Vector2(101.133, -71.7193)
+
+[node name="Coin" parent="." instance=ExtResource("2_j57f4")]
+position = Vector2(-276.067, -97.4949)

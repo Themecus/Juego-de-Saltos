@@ -14,6 +14,10 @@ config/name="Juego de Saltos"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+PlayerInvetory="*res://Scripts/player_invetory.gd"
+
 [input]
 
 jump={
@@ -51,4 +55,6 @@ speed={
 2d_physics/layer_7="dete"
 2d_physics/layer_8="floor"
 2d_physics/layer_9="wall"
-2d_physics/layer_10="prueba_dmg"
+2d_physics/layer_10="coin"
+2d_physics/layer_11="box"
+2d_physics/layer_12="crush"

@@ -5,10 +5,11 @@ const run_speed = 600.0
 const jump_velocity = -500.0
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var current_state:STATE=STATE.IDLE
+var current_anim_state: ANIM_STATE = ANIM_STATE.IDLE
 var double_jump=false
 var die=true
+var hit=false
 var frames_invenciblity=false
-
 var can_take_damage: bool = true
 var invincibility_time: float = 2.0  # 2 segundos de invencibilidad
 @onready var zone_damage=$zone_damage
@@ -20,7 +21,15 @@ enum STATE{#con esta maquina de estados controlaremos sus acciones
 	WALK,
 	JUMP,
 	RUN
-	#ATTACK
+}
+
+# Estados de animación
+enum ANIM_STATE {
+	IDLE,
+	WALK,
+	RUN,
+	JUMP,
+	HIT
 }
 
 func _physics_process(delta):
@@ -60,9 +69,33 @@ func _physics_process(delta):
 	move_gravity(delta)
 	move_and_slide()
 
+# Función principal para actualizar animaciones
+func update_animation(new_anim_state):
+	#el hit es para forzar a que muestre la animacion de dano
+	current_anim_state=new_anim_state
+	match current_anim_state:
+		ANIM_STATE.IDLE:
+			if !hit:
+				animat.play("idle")
+		ANIM_STATE.WALK:
+			if !hit:
+				animat.play("walk")
+		ANIM_STATE.RUN:
+			if !hit:
+				animat.play("run")
+		ANIM_STATE.JUMP:
+			if !hit:
+				animat.play("jump")
+		ANIM_STATE.HIT:
+			if hit:
+				animat.play("hit")
+		ANIM_STATE.HIT:
+			if hit:
+				animat.play("hit")
+
 func move_run(delta):
 	if is_on_floor():
-		animat.play("walk")
+		update_animation(ANIM_STATE.WALK)
 		if Input.is_action_pressed("right"):
 			animat.flip_h=false
 		if Input.is_action_pressed("left"):
@@ -78,7 +111,7 @@ func move_jump():
 	if not is_on_floor():
 		zone_damage.monitoring = true
 		zone_damage.monitorable = true
-		animat.play("jump")
+		update_animation(ANIM_STATE.JUMP)
 	else:
 		zone_damage.monitoring = false
 		zone_damage.monitorable = false
@@ -88,7 +121,7 @@ func move_jump():
 
 func move_walk():
 	if is_on_floor():
-		animat.play("walk")
+		update_animation(ANIM_STATE.WALK)
 		if Input.is_action_pressed("right"):
 			animat.flip_h=false
 		if Input.is_action_pressed("left"):
@@ -104,7 +137,7 @@ func move_gravity(delta):
 		velocity.y += gravity * delta
 
 func move_idle():
-	animat.play("idle")
+	update_animation(ANIM_STATE.IDLE)
 	zone_damage.monitoring = false
 	zone_damage.monitorable = false
 
@@ -114,6 +147,7 @@ func _on_body_hitbox_area_entered(area):
 		return  # Salimos de la función después de detectar pared
 	
 	if area.is_in_group("dmg") and can_take_damage:
+		hit=true
 		take_damage()
 		return
 	
@@ -124,11 +158,13 @@ func _on_body_hitbox_area_entered(area):
 # Nueva función para manejar el daño
 func take_damage():
 	can_take_damage = false
+	update_animation(ANIM_STATE.HIT)
 	start_invincibility_effect()
 	# Iniciar temporizador de invencibilidad
 	timer.start(invincibility_time)
 	
 	if !die:
+		
 		queue_free()
 	if die:
 		die=false
@@ -136,11 +172,12 @@ func take_damage():
 
 func _on_cooldown_hit_timeout():
 	can_take_damage = true
-	print("¡Ya puedes recibir daño nuevamente!")
+	hit=false
+	#print("¡Ya puedes recibir daño nuevamente!")
 
 # Función para efectos durante la invencibilidad
 func start_invincibility_effect():
-	# Ejemplo: hacer parpadear el sprite
+	# hacer parpadear el sprite
 	var blink_timer = Timer.new()
 	add_child(blink_timer)
 	blink_timer.wait_time = 0.1
@@ -162,6 +199,5 @@ func _on_zone_damage_area_entered(area):
 		double_jump=false
 	if velocity.y > 0:  # Jugador moviéndose hacia abajo
 			velocity.y = -300  # Ajusta este valor para la altura del rebote
-
 
 

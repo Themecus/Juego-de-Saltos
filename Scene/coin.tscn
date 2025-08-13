@@ -1,0 +1,76 @@
+[gd_scene load_steps=11 format=3 uid="uid://dgfrxfkg5kfqm"]
+
+[ext_resource type="Script" path="res://Scripts/coin.gd" id="1_3w57p"]
+[ext_resource type="Texture2D" uid="uid://crq5hmx1hj61f" path="res://img/coleccionable.png" id="1_f5ga2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4vlk5"]
+radius = 37.3363
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aimja"]
+atlas = ExtResource("1_f5ga2")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pa4yu"]
+atlas = ExtResource("1_f5ga2")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_edkbj"]
+atlas = ExtResource("1_f5ga2")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dg65e"]
+atlas = ExtResource("1_f5ga2")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_syvb6"]
+atlas = ExtResource("1_f5ga2")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_50rri"]
+atlas = ExtResource("1_f5ga2")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_u72o5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aimja")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pa4yu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_edkbj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dg65e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_syvb6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_50rri")
+}],
+"loop": true,
+"name": &"coin",
+"speed": 10.0
+}]
+
+[node name="Coin" type="Area2D" groups=["coin"]]
+scale = Vector2(0.765793, 0.761533)
+collision_layer = 512
+collision_mask = 32
+script = ExtResource("1_3w57p")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_4vlk5")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0.5, 0.5)
+scale = Vector2(1.25781, 1.24219)
+sprite_frames = SubResource("SpriteFrames_u72o5")
+animation = &"coin"
+frame_progress = 0.114211
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

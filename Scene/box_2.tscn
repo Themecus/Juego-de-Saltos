@@ -1,0 +1,50 @@
+[gd_scene load_steps=7 format=3 uid="uid://bv1wwjanl6iqp"]
+
+[ext_resource type="Texture2D" uid="uid://dowfluy6kaj2b" path="res://img/Caja Comun.png" id="1_7ghms"]
+[ext_resource type="Script" path="res://Scripts/box_2.gd" id="1_pts02"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4s7d0"]
+size = Vector2(66.2164, 65.157)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_221aj"]
+atlas = ExtResource("1_7ghms")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m1nnp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_221aj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j6bst"]
+size = Vector2(63.6992, 20)
+
+[node name="box2" type="StaticBody2D"]
+collision_layer = 1024
+collision_mask = 32
+script = ExtResource("1_pts02")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.745361, -1.33521)
+shape = SubResource("RectangleShape2D_4s7d0")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(1.05948, -0.264858)
+scale = Vector2(1.48835, 1.47593)
+sprite_frames = SubResource("SpriteFrames_m1nnp")
+
+[node name="crush_zone" type="Area2D" parent="."]
+collision_layer = 2048
+collision_mask = 32
+
+[node name="crush_zone" type="CollisionShape2D" parent="crush_zone"]
+position = Vector2(-0.57716, 23.2902)
+shape = SubResource("RectangleShape2D_j6bst")
+
+[connection signal="area_entered" from="crush_zone" to="." method="_on_crush_zone_area_entered"]

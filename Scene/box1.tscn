@@ -1,0 +1,62 @@
+[gd_scene load_steps=9 format=3 uid="uid://3y3ycudu31cs"]
+
+[ext_resource type="Texture2D" uid="uid://5ihsn2arnp2d" path="res://img/Caja.png" id="1_mikpl"]
+[ext_resource type="Script" path="res://Scripts/box1.gd" id="1_pm2ud"]
+[ext_resource type="Texture2D" uid="uid://cjqbmgsfxfwpa" path="res://img/Caja Agrietada.png" id="3_ahoeu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jbpef"]
+size = Vector2(63.613, 63.6226)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nn6ha"]
+atlas = ExtResource("1_mikpl")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rgtg7"]
+atlas = ExtResource("3_ahoeu")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_28lr7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nn6ha")
+}],
+"loop": true,
+"name": &"box",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rgtg7")
+}],
+"loop": true,
+"name": &"box_crush",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bhbw8"]
+size = Vector2(61.8718, 3.18198)
+
+[node name="box1" type="StaticBody2D"]
+collision_layer = 1024
+collision_mask = 32
+script = ExtResource("1_pm2ud")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.00720024, -0.0811195)
+shape = SubResource("RectangleShape2D_jbpef")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_28lr7")
+animation = &"box"
+
+[node name="crush_zone" type="Area2D" parent="."]
+collision_layer = 2048
+collision_mask = 32
+
+[node name="crush" type="CollisionShape2D" parent="crush_zone"]
+position = Vector2(-0.182878, 32.3458)
+shape = SubResource("RectangleShape2D_bhbw8")
+
+[connection signal="area_entered" from="crush_zone" to="." method="_on_crush_zone_area_entered"]
