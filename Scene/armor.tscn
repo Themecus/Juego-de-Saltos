@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://b105230cg43tj"]
+
+[ext_resource type="Script" path="res://Scripts/Armor.gd" id="1_ucfhf"]
+[ext_resource type="Texture2D" uid="uid://byusq0ebybucb" path="res://img/Placas.png" id="2_gqwes"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4vmo2"]
+size = Vector2(43.553, 43.2659)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y150t"]
+atlas = ExtResource("2_gqwes")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_u6o52"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y150t")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_phopm"]
+size = Vector2(43.7034, 43.4061)
+
+[node name="Armor" type="CharacterBody2D"]
+collision_layer = 4096
+collision_mask = 128
+script = ExtResource("1_ucfhf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.88662, 0.408314)
+shape = SubResource("RectangleShape2D_4vmo2")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(2.16327, -1.58162)
+scale = Vector2(0.742188, 0.816406)
+sprite_frames = SubResource("SpriteFrames_u6o52")
+animation = &"idle"
+
+[node name="take_zone" type="Area2D" parent="." groups=["buff1"]]
+collision_layer = 4096
+collision_mask = 32
+
+[node name="take" type="CollisionShape2D" parent="take_zone"]
+position = Vector2(1.2591, 0.878395)
+shape = SubResource("RectangleShape2D_phopm")
+
+[connection signal="area_entered" from="take_zone" to="." method="_on_take_zone_area_entered"]

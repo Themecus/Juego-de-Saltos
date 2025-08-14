@@ -7,8 +7,9 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var current_state:STATE=STATE.IDLE
 var current_anim_state: ANIM_STATE = ANIM_STATE.IDLE
 var double_jump=false
-var die=true
+var die=false
 var hit=false
+var buff_armor=false
 var frames_invenciblity=false
 var can_take_damage: bool = true
 var invincibility_time: float = 2.0  # 2 segundos de invencibilidad
@@ -75,17 +76,23 @@ func update_animation(new_anim_state):
 	current_anim_state=new_anim_state
 	match current_anim_state:
 		ANIM_STATE.IDLE:
-			if !hit:
+			if !hit and !buff_armor:
 				animat.play("idle")
+			if !hit and buff_armor:
+				animat.play("idle_armor")
 		ANIM_STATE.WALK:
-			if !hit:
+			if !hit and !buff_armor:
 				animat.play("walk")
+			if !hit and buff_armor:
+				animat.play("walk_armor")
 		ANIM_STATE.RUN:
-			if !hit:
+			if !hit and !buff_armor:
 				animat.play("run")
 		ANIM_STATE.JUMP:
 			if !hit:
 				animat.play("jump")
+			if !hit and buff_armor:
+				animat.play("jump_armor")
 		ANIM_STATE.HIT:
 			if hit:
 				animat.play("hit")
@@ -148,7 +155,13 @@ func _on_body_hitbox_area_entered(area):
 	
 	if area.is_in_group("dmg") and can_take_damage:
 		hit=true
+		buff_armor=false
 		take_damage()
+		return
+		
+	if area.is_in_group("buff1"):
+		die=true
+		buff_armor=true
 		return
 	
 	if is_on_floor():
@@ -164,7 +177,6 @@ func take_damage():
 	timer.start(invincibility_time)
 	
 	if !die:
-		
 		queue_free()
 	if die:
 		die=false

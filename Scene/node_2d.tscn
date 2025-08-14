@@ -2,8 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://dx0rqesak770a" path="res://img/Suelo Tierra.png" id="1_jhm4s"]
 [ext_resource type="PackedScene" uid="uid://b8jq0dcmlr24f" path="res://Scene/player.tscn" id="2_ll5xi"]
-[ext_resource type="PackedScene" uid="uid://dt5yvq2jvcd7x" path="res://Scene/puerta.tscn" id="4_chaai"]
 [ext_resource type="PackedScene" uid="uid://3y3ycudu31cs" path="res://Scene/box1.tscn" id="4_csr82"]
+[ext_resource type="PackedScene" uid="uid://b105230cg43tj" path="res://Scene/armor.tscn" id="5_2mi0t"]
 [ext_resource type="PackedScene" uid="uid://bv1wwjanl6iqp" path="res://Scene/box_2.tscn" id="5_532s7"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_1q134"]
@@ -426,7 +426,7 @@ physics_layer_1/collision_mask = 32
 sources/0 = SubResource("TileSetAtlasSource_t6xms")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q1nr2"]
-size = Vector2(58.3225, 302.459)
+size = Vector2(63.9598, 302.459)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_loyey"]
 size = Vector2(91.8823, 113.527)
@@ -452,7 +452,7 @@ collision_layer = 256
 collision_mask = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(6.88562, 9.11879)
+position = Vector2(4.06689, 9.11879)
 shape = SubResource("RectangleShape2D_q1nr2")
 
 [node name="Area2D2" type="Area2D" parent="." groups=["wall"]]
@@ -472,11 +472,11 @@ collision_mask = 32
 position = Vector2(-188.028, -68.6285)
 shape = SubResource("RectangleShape2D_loyey")
 
-[node name="puerta" parent="." instance=ExtResource("4_chaai")]
-position = Vector2(467.15, -88.3394)
-
 [node name="box1" parent="." instance=ExtResource("4_csr82")]
 position = Vector2(176.468, -201.477)
 
 [node name="box2" parent="." instance=ExtResource("5_532s7")]
 position = Vector2(253.573, -200.543)
+
+[node name="Armor" parent="." instance=ExtResource("5_2mi0t")]
+position = Vector2(494.389, -113.73)
