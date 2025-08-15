@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 const speed = 300.0
-const run_speed = 600.0
+const run_speed = 700.0
 const jump_velocity = -500.0
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var current_state:STATE=STATE.IDLE
@@ -30,7 +30,7 @@ enum ANIM_STATE {
 	WALK,
 	RUN,
 	JUMP,
-	HIT
+	HIT,
 }
 
 func _physics_process(delta):
@@ -73,6 +73,7 @@ func _physics_process(delta):
 # Función principal para actualizar animaciones
 func update_animation(new_anim_state):
 	#el hit es para forzar a que muestre la animacion de dano
+		
 	current_anim_state=new_anim_state
 	match current_anim_state:
 		ANIM_STATE.IDLE:
@@ -93,9 +94,6 @@ func update_animation(new_anim_state):
 				animat.play("jump")
 			if !hit and buff_armor:
 				animat.play("jump_armor")
-		ANIM_STATE.HIT:
-			if hit:
-				animat.play("hit")
 		ANIM_STATE.HIT:
 			if hit:
 				animat.play("hit")
