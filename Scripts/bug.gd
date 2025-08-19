@@ -29,9 +29,8 @@ func move_die():
 			queue_free()
 
 func _on_zone_damage_body_entered(body):
-	if body.is_in_group("muralla"):
-		scale.x *= -1#si solo ponemos esto, es un giro universal para la escena
-		sides*=-1
+	scale.x*=-1
+	sides*=-1
 
 
 func _on_body_hitbox_area_entered(area):

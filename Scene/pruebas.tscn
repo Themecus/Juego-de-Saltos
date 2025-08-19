@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://b887ekrhmkug"]
+[gd_scene load_steps=4 format=3 uid="uid://b887ekrhmkug"]
 
-[ext_resource type="PackedScene" uid="uid://b8jq0dcmlr24f" path="res://Scene/player.tscn" id="1_h6kpu"]
-[ext_resource type="PackedScene" uid="uid://dgfrxfkg5kfqm" path="res://Scene/coin.tscn" id="2_j57f4"]
+[ext_resource type="PackedScene" uid="uid://cu7y2weyhcwb1" path="res://Scene/worm.tscn" id="1_n1wh8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v5e0y"]
 size = Vector2(509, 46.5)
@@ -59,8 +58,5 @@ metadata/_edit_use_anchors_ = true
 position = Vector2(10.5, 11.878)
 shape = SubResource("RectangleShape2D_i8nby")
 
-[node name="Player" parent="." instance=ExtResource("1_h6kpu")]
-position = Vector2(101.133, -71.7193)
-
-[node name="Coin" parent="." instance=ExtResource("2_j57f4")]
-position = Vector2(-276.067, -97.4949)
+[node name="worm" parent="." instance=ExtResource("1_n1wh8")]
+position = Vector2(-331.168, -306.57)

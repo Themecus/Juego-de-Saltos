@@ -224,7 +224,7 @@ size = Vector2(20, 123.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_471w3"]
 size = Vector2(66.5956, 119.674)
 
-[node name="Player" type="CharacterBody2D" groups=["player"]]
+[node name="Player" type="CharacterBody2D"]
 position = Vector2(2.66968, 10.6787)
 scale = Vector2(0.605469, 0.59681)
 collision_layer = 32
@@ -260,9 +260,9 @@ offset_bottom = 64.1403
 color = Color(1, 0.027451, 0.27451, 0.388235)
 metadata/_edit_use_anchors_ = true
 
-[node name="body_hitbox" type="Area2D" parent="."]
+[node name="body_hitbox" type="Area2D" parent="." groups=["player"]]
 collision_layer = 32
-collision_mask = 6416
+collision_mask = 14608
 
 [node name="hitbox" type="CollisionShape2D" parent="body_hitbox"]
 position = Vector2(-3.60887, -19.0501)
@@ -271,7 +271,6 @@ shape = SubResource("RectangleShape2D_471w3")
 [node name="Camera2D" type="Camera2D" parent="."]
 rotation = 0.00307906
 scale = Vector2(0.119301, -3.50789)
-zoom = Vector2(2, 2)
 
 [node name="cooldown_hit" type="Timer" parent="."]
 wait_time = 3.0

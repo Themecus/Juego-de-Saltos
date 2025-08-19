@@ -27,11 +27,10 @@ func move_die():
 		if animat.frame==6:
 			queue_free()
 
-func _on_zone_damage_body_entered(body):
-	if body.is_in_group("muralla"):
-		animat.flip_h=!animat.flip_h
-		sides*=-1
-
-
 func _on_body_hitbox_area_entered(area):
 	life=false
+
+
+func _on_zone_damage_body_entered(body):
+	scale.x*=-1
+	sides*=-1

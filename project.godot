@@ -59,3 +59,4 @@ speed={
 2d_physics/layer_11="box"
 2d_physics/layer_12="crush"
 2d_physics/layer_13="item"
+2d_physics/layer_14="flag"

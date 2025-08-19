@@ -147,6 +147,7 @@ func move_idle():
 	zone_damage.monitorable = false
 
 func _on_body_hitbox_area_entered(area):
+	#print("hola")
 	if area.is_in_group("wall"):
 		double_jump = true
 		return  # Salimos de la función después de detectar pared
@@ -175,6 +176,7 @@ func take_damage():
 	timer.start(invincibility_time)
 	
 	if !die:
+		PlayerInvetory.life=false
 		queue_free()
 	if die:
 		die=false
