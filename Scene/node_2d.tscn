@@ -444,7 +444,7 @@ layer_1/name = "wall"
 layer_1/tile_data = PackedInt32Array(-458723, 589824, 10, -393187, 589824, 11, -327651, 589824, 10, -262115, 589824, 11, -196579, 589824, 10, -131043, 589824, 11, -917480, 786432, 10, -851944, 786432, 11, -786408, 786432, 10, -720872, 786432, 11, -655336, 786432, 10, -589800, 786432, 11, -524264, 786432, 10, -458728, 786432, 11)
 
 [node name="Player" parent="." instance=ExtResource("2_ll5xi")]
-position = Vector2(341.005, -93.595)
+position = Vector2(104.272, -625.494)
 
 [node name="Area2D" type="Area2D" parent="." groups=["wall"]]
 position = Vector2(1079.42, -159.597)
