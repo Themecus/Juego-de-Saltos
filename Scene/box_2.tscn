@@ -22,7 +22,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j6bst"]
-size = Vector2(63.6992, 20)
+size = Vector2(63.6992, 41.9798)
 
 [node name="box2" type="StaticBody2D"]
 collision_layer = 1024
@@ -41,10 +41,10 @@ sprite_frames = SubResource("SpriteFrames_m1nnp")
 
 [node name="crush_zone" type="Area2D" parent="."]
 collision_layer = 2048
-collision_mask = 32
+collision_mask = 48
 
 [node name="crush_zone" type="CollisionShape2D" parent="crush_zone"]
-position = Vector2(-0.57716, 23.2902)
+position = Vector2(-0.57716, 12.3003)
 shape = SubResource("RectangleShape2D_j6bst")
 
 [connection signal="area_entered" from="crush_zone" to="." method="_on_crush_zone_area_entered"]

@@ -262,7 +262,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="body_hitbox" type="Area2D" parent="." groups=["player"]]
 collision_layer = 32
-collision_mask = 14608
+collision_mask = 30992
 
 [node name="hitbox" type="CollisionShape2D" parent="body_hitbox"]
 position = Vector2(-3.60887, -19.0501)

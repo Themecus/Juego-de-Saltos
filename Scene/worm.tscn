@@ -121,9 +121,8 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t5y7m"]
-radius = 6.86364
-height = 61.025
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ll2w0"]
+size = Vector2(11.3251, 59.7246)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6bseg"]
 size = Vector2(63.9868, 11.0402)
@@ -141,13 +140,13 @@ script = ExtResource("1_tnbpc")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(6, -19)
 sprite_frames = SubResource("SpriteFrames_arrqq")
-animation = &"die"
-frame_progress = 0.40348
+animation = &"idle"
 
 [node name="body_solid" type="CollisionShape2D" parent="."]
-position = Vector2(1.32571, -7.62626)
+position = Vector2(3.76007, -7.16651)
 rotation = 1.5708
-shape = SubResource("CapsuleShape2D_t5y7m")
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_ll2w0")
 
 [node name="zone_damage" type="Area2D" parent="." groups=["dmg"]]
 collision_layer = 16
@@ -155,7 +154,6 @@ collision_mask = 416
 
 [node name="damage" type="CollisionShape2D" parent="zone_damage"]
 position = Vector2(1.79881, -7.49856)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_6bseg")
 
 [node name="body_hitbox" type="Area2D" parent="."]
@@ -164,7 +162,6 @@ collision_mask = 4
 
 [node name="hitbox" type="CollisionShape2D" parent="body_hitbox"]
 position = Vector2(1.70581, -16.2156)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_gqw8d")
 
 [connection signal="area_entered" from="zone_damage" to="." method="_on_zone_damage_area_entered"]

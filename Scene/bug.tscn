@@ -75,7 +75,7 @@ texture_filter = 1
 position = Vector2(28.2183, -24.8284)
 scale = Vector2(2.86719, 2.57812)
 sprite_frames = SubResource("SpriteFrames_qkvg6")
-animation = &"die"
+animation = &"idle"
 
 [node name="zone_damage" type="Area2D" parent="." groups=["dmg"]]
 position = Vector2(0, 0.629959)

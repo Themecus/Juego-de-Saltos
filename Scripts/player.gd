@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 const speed = 300.0
-const run_speed = 700.0
+const run_speed = 600.0
 const jump_velocity = -500.0
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var current_state:STATE=STATE.IDLE
@@ -21,7 +21,8 @@ enum STATE{#con esta maquina de estados controlaremos sus acciones
 	IDLE,
 	WALK,
 	JUMP,
-	RUN
+	RUN,
+	FALL
 }
 
 # Estados de animación
@@ -43,6 +44,8 @@ func _physics_process(delta):
 				current_state=STATE.WALK
 			elif Input.is_action_pressed("right"):#si presionamos D se activara el estado correspondiente
 				current_state=STATE.WALK
+			elif not is_on_floor():
+				current_state=STATE.FALL
 		STATE.WALK:#aqui caminando
 			move_walk()
 			if not Input.is_action_pressed("left") and not Input.is_action_pressed("right") and is_on_floor():#Si no se sgui presionando A o D vuelve a estar quieto
@@ -51,6 +54,8 @@ func _physics_process(delta):
 				current_state=STATE.JUMP
 			elif Input.is_action_pressed("speed"):
 				current_state=STATE.RUN
+			elif not is_on_floor():
+				current_state=STATE.FALL
 			#elif Input.is_action_pressed("attack"): #si esta caminando puede saltar
 				#current_state=STATE.ATTACK
 			#print("moverse")
@@ -66,6 +71,16 @@ func _physics_process(delta):
 				current_state=STATE.WALK
 			elif Input.is_action_pressed("jump"):
 				current_state=STATE.JUMP
+			elif not is_on_floor():
+				current_state=STATE.FALL
+		STATE.FALL:#si caemos sin saltar activara la colision de ataque
+			move_fall()
+			if is_on_floor():#Si vuelve a tocar el suelo vuelve a estat quieto
+				current_state=STATE.IDLE
+			elif Input.is_action_pressed("left") or Input.is_action_pressed("right"): #Si esta en el aire puede moverse
+				current_state=STATE.WALK
+			elif not Input.is_action_pressed("left") or not Input.is_action_pressed("right"): #Si esta en el aire puede moverse
+				current_state=STATE.WALK
 	
 	move_gravity(delta)
 	move_and_slide()
@@ -123,6 +138,15 @@ func move_jump():
 	if Input.is_action_pressed("jump") and is_on_floor() or double_jump==true:#para saltar
 		velocity.y = jump_velocity
 		double_jump=false
+
+func move_fall():
+	if not is_on_floor():
+		zone_damage.monitoring = true
+		zone_damage.monitorable = true
+		update_animation(ANIM_STATE.JUMP)
+	else:
+		zone_damage.monitoring = false
+		zone_damage.monitorable = false
 
 func move_walk():
 	if is_on_floor():

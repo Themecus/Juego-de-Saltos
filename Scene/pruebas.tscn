@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://b887ekrhmkug"]
+[gd_scene load_steps=6 format=3 uid="uid://b887ekrhmkug"]
 
 [ext_resource type="PackedScene" uid="uid://b8jq0dcmlr24f" path="res://Scene/player.tscn" id="1_16hgl"]
 [ext_resource type="PackedScene" uid="uid://3y3ycudu31cs" path="res://Scene/box1.tscn" id="2_7kys0"]
+[ext_resource type="PackedScene" uid="uid://c5msrd8bo3qkp" path="res://Scene/bug_red.tscn" id="3_hoo3b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v5e0y"]
 size = Vector2(509, 46.5)
@@ -60,7 +61,10 @@ position = Vector2(10.5, 11.878)
 shape = SubResource("RectangleShape2D_i8nby")
 
 [node name="Player" parent="." instance=ExtResource("1_16hgl")]
-position = Vector2(-283.559, -76.8422)
+position = Vector2(65.7518, -74.0138)
 
 [node name="box1" parent="." instance=ExtResource("2_7kys0")]
 position = Vector2(-192.621, -177.411)
+
+[node name="bug_red" parent="." instance=ExtResource("3_hoo3b")]
+position = Vector2(300.89, -59.3578)

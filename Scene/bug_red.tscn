@@ -1,0 +1,76 @@
+[gd_scene load_steps=10 format=3 uid="uid://c5msrd8bo3qkp"]
+
+[ext_resource type="Script" path="res://Scripts/bug_red.gd" id="1_clvq4"]
+[ext_resource type="Texture2D" uid="uid://5l8bkbmlv0jo" path="res://img/Enemigo Escarapincho Rojo.png" id="2_4tyul"]
+[ext_resource type="Texture2D" uid="uid://d0dxkn7aw2xcu" path="res://img/Enemigo Caminando Escarapincho Rojo.png" id="3_krf64"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8pn34"]
+size = Vector2(141.955, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xsexk"]
+atlas = ExtResource("2_4tyul")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cytj7"]
+atlas = ExtResource("3_krf64")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_41x06"]
+atlas = ExtResource("3_krf64")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ruhhn"]
+atlas = ExtResource("3_krf64")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sqkmm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xsexk")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cytj7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_41x06")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ruhhn")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 10.0
+}]
+
+[node name="bug_red" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 128
+script = ExtResource("1_clvq4")
+
+[node name="body_solid" type="CollisionShape2D" parent="."]
+position = Vector2(1.436, 0.6716)
+shape = SubResource("RectangleShape2D_8pn34")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(26.3778, -29.7453)
+scale = Vector2(2.55473, 2.97669)
+sprite_frames = SubResource("SpriteFrames_sqkmm")
+animation = &"walk"
+
+[node name="zone_damage" type="Area2D" parent="." groups=["dmg"]]
+collision_layer = 16
+collision_mask = 2464
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="zone_damage"]
+position = Vector2(2.64865, -14.9223)
+scale = Vector2(1.0191, 0.973323)
+polygon = PackedVector2Array(-67.9948, -5.04214, -62.2189, -46.5114, -36.0577, -33.1538, -45.7967, -70.2369, -18.8272, -47.0132, -10.5865, -78.103, 1.02541, -47.7623, 48.5967, -73.9827, 36.2356, -36.1504, 100.663, -48.886, 74.4444, 15.7255)
+
+[connection signal="body_entered" from="zone_damage" to="." method="_on_zone_damage_body_entered"]
