@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://b8jq0dcmlr24f"]
+[gd_scene load_steps=42 format=3 uid="uid://b8jq0dcmlr24f"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_6fwbh"]
 [ext_resource type="Texture2D" uid="uid://dhkrgju4kta8w" path="res://img/Personaje.png" id="1_p8565"]
@@ -10,6 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://c14mciglrn7y1" path="res://img/Personaje transformarse.png" id="6_gau44"]
 [ext_resource type="Texture2D" uid="uid://dtixubo8xbv1s" path="res://img/Personaje saltando armadura.png" id="7_kybm3"]
 [ext_resource type="Texture2D" uid="uid://csx6lmwyuicek" path="res://img/Personaje caminando armadura.png" id="10_ee2sg"]
+[ext_resource type="Script" path="res://Scripts/score.gd" id="11_8v02d"]
+[ext_resource type="Texture2D" uid="uid://crq5hmx1hj61f" path="res://img/coleccionable.png" id="11_15kwn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fvptu"]
 size = Vector2(63, 124)
@@ -224,6 +226,21 @@ size = Vector2(20, 123.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_471w3"]
 size = Vector2(66.5956, 119.674)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_e7x4u"]
+atlas = ExtResource("11_15kwn")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1j0tu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e7x4u")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(2.66968, 10.6787)
 scale = Vector2(0.605469, 0.59681)
@@ -262,7 +279,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="body_hitbox" type="Area2D" parent="." groups=["player"]]
 collision_layer = 32
-collision_mask = 30992
+collision_mask = 63760
 
 [node name="hitbox" type="CollisionShape2D" parent="body_hitbox"]
 position = Vector2(-3.60887, -19.0501)
@@ -274,6 +291,22 @@ scale = Vector2(0.119301, -3.50789)
 
 [node name="cooldown_hit" type="Timer" parent="."]
 wait_time = 3.0
+
+[node name="score" type="Label" parent="."]
+offset_left = -832.97
+offset_top = -518.052
+offset_right = -759.97
+offset_bottom = -429.052
+theme_override_font_sizes/font_size = 50
+text = "X 0"
+script = ExtResource("11_8v02d")
+
+[node name="coin_icon" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-892.765, -485.446)
+scale = Vector2(2.32142, 2.36531)
+sprite_frames = SubResource("SpriteFrames_1j0tu")
+animation = &"idle"
 
 [connection signal="area_entered" from="zone_damage" to="." method="_on_zone_damage_area_entered"]
 [connection signal="area_entered" from="body_hitbox" to="." method="_on_body_hitbox_area_entered"]

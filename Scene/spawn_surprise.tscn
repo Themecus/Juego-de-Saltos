@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dmdralaexflwl"]
+
+[ext_resource type="Script" path="res://Scripts/spawn_surprise.gd" id="1_31wnl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7shv8"]
+size = Vector2(144, 136)
+
+[node name="spawn_surprise" type="Area2D"]
+collision_layer = 32768
+collision_mask = 32
+script = ExtResource("1_31wnl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_7shv8")
+
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]

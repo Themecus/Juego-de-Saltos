@@ -1,5 +1,6 @@
-[gd_scene load_steps=20 format=3 uid="uid://dq1jn7yud2s7b"]
+[gd_scene load_steps=21 format=3 uid="uid://dq1jn7yud2s7b"]
 
+[ext_resource type="Script" path="res://Scripts/flags_finales.gd" id="1_gublb"]
 [ext_resource type="Texture2D" uid="uid://brjf1cd5ldkys" path="res://img/Subbandera.png" id="1_vm28j"]
 [ext_resource type="Texture2D" uid="uid://bnqfpw00ig34s" path="res://img/Subbandera Animacion.png" id="2_i0juu"]
 
@@ -74,7 +75,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -118,7 +119,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"rise",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -132,6 +133,9 @@ animations = [{
 [node name="flags_finales" type="Area2D"]
 position = Vector2(0, -20.6595)
 scale = Vector2(1.49799, 1.48136)
+collision_layer = 8192
+collision_mask = 32
+script = ExtResource("1_gublb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(8.43715, 12.1244)
@@ -140,4 +144,7 @@ shape = SubResource("RectangleShape2D_b1cnu")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_igpot")
-animation = &"static"
+animation = &"rise"
+frame_progress = 0.502984
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

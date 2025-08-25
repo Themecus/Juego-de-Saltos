@@ -128,7 +128,7 @@ size = Vector2(11.3251, 59.7246)
 size = Vector2(63.9868, 11.0402)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gqw8d"]
-size = Vector2(67.3349, 3.1985)
+size = Vector2(67.3349, 7.36517)
 
 [node name="worm" type="CharacterBody2D"]
 position = Vector2(0, 1)
@@ -145,7 +145,6 @@ animation = &"idle"
 [node name="body_solid" type="CollisionShape2D" parent="."]
 position = Vector2(3.76007, -7.16651)
 rotation = 1.5708
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_ll2w0")
 
 [node name="zone_damage" type="Area2D" parent="." groups=["dmg"]]
@@ -161,7 +160,8 @@ collision_layer = 8
 collision_mask = 4
 
 [node name="hitbox" type="CollisionShape2D" parent="body_hitbox"]
-position = Vector2(1.70581, -16.2156)
+position = Vector2(1.70581, -14.1323)
+scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_gqw8d")
 
 [connection signal="area_entered" from="zone_damage" to="." method="_on_zone_damage_area_entered"]
