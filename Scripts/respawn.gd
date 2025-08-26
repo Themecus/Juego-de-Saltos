@@ -9,6 +9,7 @@ func _process(delta):
 	else:
 		place=PlayerInvetory.last_respawn_position
 		PlayerInvetory.life=true
+		
 		place_respawn(place)
 		
 func place_respawn(place):
@@ -16,5 +17,7 @@ func place_respawn(place):
 	var player=playerload.instantiate()
 	get_tree().current_scene.add_child(player)
 	player.global_position = place
+	
+	
    
 

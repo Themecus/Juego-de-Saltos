@@ -1,11 +1,18 @@
-[gd_scene load_steps=25 format=3 uid="uid://b22p4wpxs3c4l"]
+[gd_scene load_steps=32 format=3 uid="uid://b22p4wpxs3c4l"]
 
+[ext_resource type="Texture2D" uid="uid://b62p1yvberric" path="res://img/Pared 3.png" id="1_iplip"]
+[ext_resource type="Texture2D" uid="uid://dr0reikhccaq3" path="res://img/Cielo 3.png" id="1_kakc7"]
+[ext_resource type="Texture2D" uid="uid://nejjpocku51r" path="res://img/Pared 1.png" id="1_nx0bd"]
+[ext_resource type="Texture2D" uid="uid://c14fi67s5nygv" path="res://img/Pared 4.png" id="1_rhppg"]
 [ext_resource type="Texture2D" uid="uid://dx0rqesak770a" path="res://img/Suelo Tierra.png" id="1_vp183"]
 [ext_resource type="PackedScene" uid="uid://b8jq0dcmlr24f" path="res://Scene/player.tscn" id="2_5qp7r"]
+[ext_resource type="Texture2D" uid="uid://77oego8cbun0" path="res://img/Cielo 2.png" id="2_7ycv8"]
 [ext_resource type="Texture2D" uid="uid://dr5b2aw5afxxp" path="res://img/Suelo Decoracion.png" id="2_pu7ja"]
 [ext_resource type="PackedScene" uid="uid://cu7y2weyhcwb1" path="res://Scene/worm.tscn" id="3_21jp8"]
+[ext_resource type="Texture2D" uid="uid://b216ln1gidv2m" path="res://img/Cielo 1.png" id="3_df7t5"]
 [ext_resource type="PackedScene" uid="uid://cqbuggwpmsdci" path="res://Scene/bug.tscn" id="3_fa47u"]
 [ext_resource type="PackedScene" uid="uid://3y3ycudu31cs" path="res://Scene/box1.tscn" id="5_u8cjo"]
+[ext_resource type="Texture2D" uid="uid://c1mfdoiydfmwh" path="res://img/Nube 1.png" id="6_88n6t"]
 [ext_resource type="PackedScene" uid="uid://bv1wwjanl6iqp" path="res://Scene/box_2.tscn" id="6_vuxpf"]
 [ext_resource type="PackedScene" uid="uid://byresm4lutgkb" path="res://Scene/flag.tscn" id="7_3y1jq"]
 [ext_resource type="PackedScene" uid="uid://dq1jn7yud2s7b" path="res://Scene/flags_finales.tscn" id="10_jspwp"]
@@ -805,6 +812,106 @@ size = Vector2(446.314, 109.025)
 [node name="Level_1" type="Node2D"]
 position = Vector2(577.648, 2847.22)
 
+[node name="bag_of_scenery" type="Node2D" parent="."]
+position = Vector2(162.139, -161.95)
+scale = Vector2(0.605469, 0.59681)
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="bag_of_scenery"]
+scroll_limit_begin = Vector2(-5000, -5000)
+scroll_limit_end = Vector2(5000, 5000)
+
+[node name="ParallaxLayer6" type="ParallaxLayer" parent="bag_of_scenery/ParallaxBackground"]
+motion_scale = Vector2(0.8, 1)
+motion_mirroring = Vector2(900, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="bag_of_scenery/ParallaxBackground/ParallaxLayer6"]
+position = Vector2(3228.07, 191.329)
+scale = Vector2(25.0611, 11.2912)
+texture = ExtResource("1_kakc7")
+
+[node name="ParallaxLayer5" type="ParallaxLayer" parent="bag_of_scenery/ParallaxBackground"]
+motion_scale = Vector2(0.8, 0.8)
+motion_mirroring = Vector2(900, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="bag_of_scenery/ParallaxBackground/ParallaxLayer5"]
+position = Vector2(3176.89, 915.242)
+scale = Vector2(24.6854, 3.732)
+texture = ExtResource("2_7ycv8")
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="bag_of_scenery/ParallaxBackground"]
+motion_scale = Vector2(0.8, 1)
+motion_mirroring = Vector2(900, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="bag_of_scenery/ParallaxBackground/ParallaxLayer4"]
+position = Vector2(3449.12, 1077.83)
+scale = Vector2(26.8287, 3.73225)
+texture = ExtResource("3_df7t5")
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="bag_of_scenery/ParallaxBackground"]
+motion_scale = Vector2(0.8, 1)
+motion_mirroring = Vector2(2900, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="bag_of_scenery/ParallaxBackground/ParallaxLayer3"]
+position = Vector2(1500.36, 2453.44)
+scale = Vector2(11.5953, 7.02764)
+texture = ExtResource("1_rhppg")
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="bag_of_scenery/ParallaxBackground"]
+position = Vector2(907.307, 704.946)
+motion_scale = Vector2(0.8, 1)
+motion_mirroring = Vector2(1350, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="bag_of_scenery/ParallaxBackground/ParallaxLayer2"]
+texture_filter = 1
+position = Vector2(2696.49, 1801.33)
+scale = Vector2(26.5867, 6.30805)
+texture = ExtResource("1_iplip")
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="bag_of_scenery/ParallaxBackground"]
+motion_scale = Vector2(0.8, 1)
+motion_mirroring = Vector2(1900, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="bag_of_scenery/ParallaxBackground/ParallaxLayer"]
+texture_filter = 1
+position = Vector2(2625.6, 2363.89)
+scale = Vector2(20.3684, 7.6035)
+texture = ExtResource("1_nx0bd")
+
+[node name="Sprite2D" type="Sprite2D" parent="bag_of_scenery"]
+position = Vector2(-244.439, -3907.44)
+scale = Vector2(6.52258, 5.66019)
+texture = ExtResource("6_88n6t")
+
+[node name="Sprite2D2" type="Sprite2D" parent="bag_of_scenery"]
+position = Vector2(1182.55, -4658.1)
+scale = Vector2(6.52258, 5.66019)
+texture = ExtResource("6_88n6t")
+
+[node name="Sprite2D3" type="Sprite2D" parent="bag_of_scenery"]
+position = Vector2(2014.97, -3961.06)
+scale = Vector2(6.52258, 5.66019)
+texture = ExtResource("6_88n6t")
+
+[node name="Sprite2D4" type="Sprite2D" parent="bag_of_scenery"]
+position = Vector2(3481.78, -4331.69)
+scale = Vector2(6.52258, 5.66019)
+texture = ExtResource("6_88n6t")
+
+[node name="Sprite2D6" type="Sprite2D" parent="bag_of_scenery"]
+position = Vector2(5164.18, -4175.08)
+scale = Vector2(6.52258, 5.66019)
+texture = ExtResource("6_88n6t")
+
+[node name="Sprite2D7" type="Sprite2D" parent="bag_of_scenery"]
+position = Vector2(7015.09, -3991.27)
+scale = Vector2(6.52258, 5.66019)
+texture = ExtResource("6_88n6t")
+
+[node name="Sprite2D8" type="Sprite2D" parent="bag_of_scenery"]
+position = Vector2(8677.29, -4148.24)
+scale = Vector2(6.52258, 5.66019)
+texture = ExtResource("6_88n6t")
+
 [node name="TileMap" type="TileMap" parent="."]
 texture_filter = 1
 scale = Vector2(3.5, 3.5)
@@ -1101,6 +1208,9 @@ position = Vector2(24.4833, -210.59)
 [node name="flag3" parent="bag_of_flags" instance=ExtResource("7_3y1jq")]
 position = Vector2(5113.9, -1052.26)
 
+[node name="flag4" parent="bag_of_flags" instance=ExtResource("7_3y1jq")]
+position = Vector2(5113.9, -1052.26)
+
 [node name="bag_of_zone_damage" type="Node2D" parent="."]
 
 [node name="Area2D" type="Area2D" parent="bag_of_zone_damage" groups=["dmg"]]
@@ -1247,4 +1357,4 @@ position = Vector2(1143.94, 644.116)
 scale = Vector2(1.26479, 1.27601)
 
 [node name="Player" parent="." instance=ExtResource("2_5qp7r")]
-position = Vector2(3820.14, -2545.12)
+position = Vector2(50.8633, -1808.58)

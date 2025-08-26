@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://b887ekrhmkug"]
+[gd_scene load_steps=8 format=3 uid="uid://b887ekrhmkug"]
 
 [ext_resource type="PackedScene" uid="uid://b8jq0dcmlr24f" path="res://Scene/player.tscn" id="1_16hgl"]
 [ext_resource type="PackedScene" uid="uid://3y3ycudu31cs" path="res://Scene/box1.tscn" id="2_7kys0"]
 [ext_resource type="PackedScene" uid="uid://c5msrd8bo3qkp" path="res://Scene/bug_red.tscn" id="3_hoo3b"]
 [ext_resource type="PackedScene" uid="uid://dmdralaexflwl" path="res://Scene/spawn_surprise.tscn" id="4_vbyun"]
+[ext_resource type="PackedScene" uid="uid://bv1wwjanl6iqp" path="res://Scene/box_2.tscn" id="5_j5klm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v5e0y"]
 size = Vector2(509, 46.5)
@@ -71,4 +72,10 @@ position = Vector2(-192.621, -177.411)
 position = Vector2(300.89, -59.3578)
 
 [node name="spawn_surprise" parent="." instance=ExtResource("4_vbyun")]
-position = Vector2(-182.772, -106.662)
+position = Vector2(958.568, -189.207)
+
+[node name="box2" parent="." instance=ExtResource("2_7kys0")]
+position = Vector2(-374.848, -209.843)
+
+[node name="box3" parent="." instance=ExtResource("5_j5klm")]
+position = Vector2(-95.4657, -174.92)

@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://c60sfr2f8judd"]
+
+[ext_resource type="Texture2D" uid="uid://dowfluy6kaj2b" path="res://img/Caja Comun.png" id="1_5aleu"]
+
+[node name="CPUParticles2D" type="CPUParticles2D"]
+amount = 1
+lifetime = 3.0
+speed_scale = 3.0
+texture = ExtResource("1_5aleu")
+spread = 175.0
+gravity = Vector2(0, 400)
+initial_velocity_max = 486.11
+angular_velocity_min = -400.0
+angular_velocity_max = -400.0
+damping_max = 25.0
