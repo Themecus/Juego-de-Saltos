@@ -22,7 +22,8 @@ enum STATE{#con esta maquina de estados controlaremos sus acciones
 	WALK,
 	JUMP,
 	RUN,
-	FALL
+	FALL,
+	EXIT
 }
 
 # Estados de animación
@@ -46,6 +47,8 @@ func _physics_process(delta):
 				current_state=STATE.WALK
 			elif not is_on_floor():
 				current_state=STATE.FALL
+			elif Input.is_action_pressed("exit"):
+				current_state=STATE.EXIT
 		STATE.WALK:#aqui caminando
 			move_walk()
 			if not Input.is_action_pressed("left") and not Input.is_action_pressed("right") and is_on_floor():#Si no se sgui presionando A o D vuelve a estar quieto
@@ -56,6 +59,8 @@ func _physics_process(delta):
 				current_state=STATE.RUN
 			elif not is_on_floor():
 				current_state=STATE.FALL
+			elif Input.is_action_pressed("exit"):
+				current_state=STATE.EXIT
 			#elif Input.is_action_pressed("attack"): #si esta caminando puede saltar
 				#current_state=STATE.ATTACK
 			#print("moverse")
@@ -65,6 +70,8 @@ func _physics_process(delta):
 				current_state=STATE.IDLE
 			elif Input.is_action_pressed("left") or Input.is_action_pressed("right"): #Si esta en el aire puede moverse
 				current_state=STATE.WALK
+			elif Input.is_action_pressed("exit"):
+				current_state=STATE.EXIT
 		STATE.RUN:#aqui corremos
 			move_run(delta)
 			if !Input.is_action_pressed("speed"):
@@ -73,6 +80,8 @@ func _physics_process(delta):
 				current_state=STATE.JUMP
 			elif not is_on_floor():
 				current_state=STATE.FALL
+			elif Input.is_action_pressed("exit"):
+				current_state=STATE.EXIT
 		STATE.FALL:#si caemos sin saltar activara la colision de ataque
 			move_fall()
 			if is_on_floor():#Si vuelve a tocar el suelo vuelve a estat quieto
@@ -81,6 +90,10 @@ func _physics_process(delta):
 				current_state=STATE.WALK
 			elif not Input.is_action_pressed("left") or not Input.is_action_pressed("right"): #Si esta en el aire puede moverse
 				current_state=STATE.WALK
+			elif Input.is_action_pressed("exit"):
+				current_state=STATE.EXIT
+		STATE.EXIT:#cierra el juego
+			get_tree().quit()
 	
 	move_gravity(delta)
 	move_and_slide()

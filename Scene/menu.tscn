@@ -1,0 +1,144 @@
+[gd_scene load_steps=12 format=3 uid="uid://dvmr6x0puq2ne"]
+
+[ext_resource type="Script" path="res://Scripts/menu.gd" id="1_2tsuc"]
+[ext_resource type="Texture2D" uid="uid://ds6tyccjgq47e" path="res://img/Personaje saltando.png" id="1_7q47k"]
+[ext_resource type="Texture2D" uid="uid://5l8bkbmlv0jo" path="res://img/Enemigo Escarapincho Rojo.png" id="2_pdhiu"]
+[ext_resource type="Texture2D" uid="uid://dowfluy6kaj2b" path="res://img/Caja Comun.png" id="3_doos4"]
+[ext_resource type="Texture2D" uid="uid://w2dg65aoy6u1" path="res://img/Personaje victoriat.png" id="4_3m3du"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pl3vg"]
+atlas = ExtResource("4_3m3du")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6je6u"]
+atlas = ExtResource("4_3m3du")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qyxd4"]
+atlas = ExtResource("4_3m3du")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4qhcg"]
+atlas = ExtResource("4_3m3du")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qfc0t"]
+atlas = ExtResource("4_3m3du")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yqxpm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pl3vg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6je6u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qyxd4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4qhcg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qfc0t")
+}],
+"loop": true,
+"name": &"default",
+"speed": 7.0
+}]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2tsuc")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1924.0
+offset_bottom = 1081.0
+color = Color(0, 0.313726, 0, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 611.682
+offset_top = 313.734
+offset_right = 1362.68
+offset_bottom = 838.734
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 80
+text = "LITTLE SCIENTIST"
+horizontal_alignment = 1
+justification_flags = 0
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 80
+text = "PLAY LEVEL 1"
+
+[node name="Button3" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 80
+text = "CONTROLS"
+
+[node name="Button2" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 80
+text = "EXIT
+"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(318.707, 526.819)
+scale = Vector2(3.89869, 4.43755)
+texture = ExtResource("1_7q47k")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(635.037, 950.176)
+rotation = -6.28319
+scale = Vector2(3.63855, 4.43755)
+texture = ExtResource("2_pdhiu")
+flip_h = true
+
+[node name="Sprite2D4" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(385.303, 947.798)
+rotation = -6.28319
+scale = Vector2(3.63855, 4.43755)
+texture = ExtResource("2_pdhiu")
+flip_h = true
+
+[node name="Sprite2D5" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(128.435, 938.284)
+rotation = -6.28319
+scale = Vector2(3.63855, 4.43755)
+texture = ExtResource("2_pdhiu")
+flip_h = true
+
+[node name="Sprite2D6" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(1603.05, 821.742)
+rotation = -6.28319
+scale = Vector2(4.49329, 4.43755)
+texture = ExtResource("3_doos4")
+flip_h = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(1579.27, 485.196)
+scale = Vector2(4.38181, 4.90209)
+sprite_frames = SubResource("SpriteFrames_yqxpm")
+frame_progress = 0.903627
+
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Button3" to="." method="_on_button_3_pressed"]
+[connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_button_2_pressed"]

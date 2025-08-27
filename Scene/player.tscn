@@ -269,14 +269,6 @@ collision_mask = 8
 position = Vector2(-1.14441e-05, 2.86102e-06)
 shape = SubResource("RectangleShape2D_hgx6m")
 
-[node name="ColorRect" type="ColorRect" parent="zone_damage"]
-offset_left = -10.2404
-offset_top = -65.8597
-offset_right = 9.75957
-offset_bottom = 64.1403
-color = Color(1, 0.027451, 0.27451, 0.388235)
-metadata/_edit_use_anchors_ = true
-
 [node name="body_hitbox" type="Area2D" parent="." groups=["player"]]
 collision_layer = 32
 collision_mask = 63760
@@ -293,18 +285,18 @@ scale = Vector2(0.119301, -3.50789)
 wait_time = 3.0
 
 [node name="score" type="Label" parent="."]
-offset_left = -832.97
-offset_top = -518.052
-offset_right = -759.97
-offset_bottom = -429.052
-theme_override_font_sizes/font_size = 50
+offset_left = -1307.52
+offset_top = -830.798
+offset_right = -1162.52
+offset_bottom = -693.798
+theme_override_font_sizes/font_size = 100
 text = "X 0"
 script = ExtResource("11_8v02d")
 
 [node name="coin_icon" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(-892.765, -485.446)
-scale = Vector2(2.32142, 2.36531)
+position = Vector2(-1443.86, -773.178)
+scale = Vector2(5.21956, 4.8617)
 sprite_frames = SubResource("SpriteFrames_1j0tu")
 animation = &"idle"
 
