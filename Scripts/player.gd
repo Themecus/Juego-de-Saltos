@@ -9,12 +9,14 @@ var current_anim_state: ANIM_STATE = ANIM_STATE.IDLE
 var double_jump=false
 var die=false
 var hit=false
+var timerr=1.5
 var buff_armor=false
 var frames_invenciblity=false
 var can_take_damage: bool = true
 var invincibility_time: float = 2.0  # 2 segundos de invencibilidad
 @onready var zone_damage=$zone_damage
 @onready var animat=$AnimatedSprite2D
+@onready var animat_flag=$AnimatedSprite2D2
 @onready var timer=$cooldown_hit
 @onready var blink_timer = $BlinkTimer  # Referencia al Timer creado en el editor
 enum STATE{#con esta maquina de estados controlaremos sus acciones
@@ -33,6 +35,8 @@ enum ANIM_STATE {
 	RUN,
 	JUMP,
 	HIT,
+	TRANS,
+	DESS
 }
 
 func _physics_process(delta):
@@ -101,7 +105,6 @@ func _physics_process(delta):
 # Función principal para actualizar animaciones
 func update_animation(new_anim_state):
 	#el hit es para forzar a que muestre la animacion de dano
-		
 	current_anim_state=new_anim_state
 	match current_anim_state:
 		ANIM_STATE.IDLE:
@@ -138,7 +141,6 @@ func move_run(delta):
 		velocity.x = direction * run_speed
 	else:#esto lo que hace es que cuando dejemos de movernos limpie velocity.x con un zero y no alla residuos
 		velocity.x = move_toward(velocity.x, 0, run_speed)
-
 
 func move_jump():
 	if not is_on_floor():
@@ -198,6 +200,10 @@ func _on_body_hitbox_area_entered(area):
 	if area.is_in_group("buff1"):
 		die=true
 		buff_armor=true
+		return
+		
+	if area.is_in_group("flag"):
+		pass
 		return
 	
 	if is_on_floor():
