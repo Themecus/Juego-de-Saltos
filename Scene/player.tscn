@@ -220,13 +220,13 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fvptu"]
-size = Vector2(71.8238, 124)
+size = Vector2(99.6489, 124)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hgx6m"]
-size = Vector2(20, 390.635)
+size = Vector2(28.0495, 570.234)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_471w3"]
-size = Vector2(122.626, 119.674)
+size = Vector2(107.635, 131.894)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e7x4u"]
 atlas = ExtResource("11_15kwn")
@@ -500,8 +500,7 @@ sprite_frames = SubResource("SpriteFrames_27e0p")
 animation = &"walk_armor"
 
 [node name="body_solid" type="CollisionShape2D" parent="."]
-position = Vector2(2.98731, -15)
-scale = Vector2(1, 1)
+position = Vector2(1.35726, -15)
 shape = SubResource("RectangleShape2D_fvptu")
 
 [node name="zone_damage" type="Area2D" parent="."]
@@ -511,8 +510,7 @@ collision_layer = 4
 collision_mask = 8
 
 [node name="damage" type="CollisionShape2D" parent="zone_damage"]
-position = Vector2(0.336942, -103.118)
-scale = Vector2(1, 1)
+position = Vector2(1.69104, -192.917)
 shape = SubResource("RectangleShape2D_hgx6m")
 
 [node name="body_hitbox" type="Area2D" parent="." groups=["player"]]
@@ -520,8 +518,7 @@ collision_layer = 32
 collision_mask = 63760
 
 [node name="hitbox" type="CollisionShape2D" parent="body_hitbox"]
-position = Vector2(0.359607, -19.0501)
-scale = Vector2(1, 1)
+position = Vector2(2.22528, -14.6006)
 shape = SubResource("RectangleShape2D_471w3")
 
 [node name="Camera2D" type="Camera2D" parent="."]

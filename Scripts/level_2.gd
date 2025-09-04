@@ -5,8 +5,8 @@ extends Node2D
 func _ready():
 	await get_tree().create_timer(0.5).timeout
 	animat_trans.play("entrance")
-
-
+	await get_tree().create_timer(1.5).timeout
+	PlayerInvetory.move_block=false
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass

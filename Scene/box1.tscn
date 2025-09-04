@@ -35,7 +35,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bhbw8"]
-size = Vector2(58.9921, 35.1408)
+size = Vector2(46.631, 39.1148)
 
 [node name="box1" type="StaticBody2D"]
 collision_layer = 1024
@@ -56,7 +56,7 @@ collision_layer = 2048
 collision_mask = 32
 
 [node name="crush" type="CollisionShape2D" parent="crush_zone"]
-position = Vector2(0.121628, 16.3664)
+position = Vector2(-0.0654907, 18.3534)
 shape = SubResource("RectangleShape2D_bhbw8")
 
 [connection signal="area_entered" from="crush_zone" to="." method="_on_crush_zone_area_entered"]
