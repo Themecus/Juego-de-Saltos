@@ -1,16 +1,21 @@
-[gd_scene load_steps=8 format=3 uid="uid://b887ekrhmkug"]
+[gd_scene load_steps=11 format=3 uid="uid://b887ekrhmkug"]
 
 [ext_resource type="PackedScene" uid="uid://b8jq0dcmlr24f" path="res://Scene/player.tscn" id="1_16hgl"]
 [ext_resource type="PackedScene" uid="uid://3y3ycudu31cs" path="res://Scene/box1.tscn" id="2_7kys0"]
 [ext_resource type="PackedScene" uid="uid://c5msrd8bo3qkp" path="res://Scene/bug_red.tscn" id="3_hoo3b"]
 [ext_resource type="PackedScene" uid="uid://dmdralaexflwl" path="res://Scene/spawn_surprise.tscn" id="4_vbyun"]
 [ext_resource type="PackedScene" uid="uid://bv1wwjanl6iqp" path="res://Scene/box_2.tscn" id="5_j5klm"]
+[ext_resource type="PackedScene" uid="uid://byresm4lutgkb" path="res://Scene/flag.tscn" id="6_jiptx"]
+[ext_resource type="PackedScene" uid="uid://cqbuggwpmsdci" path="res://Scene/bug.tscn" id="7_anwd3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v5e0y"]
 size = Vector2(509, 46.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i8nby"]
 size = Vector2(40, 40.244)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4kpyl"]
+size = Vector2(50.4334, 62.4486)
 
 [node name="Pruebas" type="Node2D"]
 position = Vector2(585, 446)
@@ -63,13 +68,13 @@ position = Vector2(10.5, 11.878)
 shape = SubResource("RectangleShape2D_i8nby")
 
 [node name="Player" parent="." instance=ExtResource("1_16hgl")]
-position = Vector2(-315.224, -74.0138)
+position = Vector2(-326.449, -63.9117)
 
 [node name="box1" parent="." instance=ExtResource("2_7kys0")]
 position = Vector2(-192.621, -177.411)
 
 [node name="bug_red" parent="." instance=ExtResource("3_hoo3b")]
-position = Vector2(300.89, -59.3578)
+position = Vector2(418.749, -75.0723)
 
 [node name="spawn_surprise" parent="." instance=ExtResource("4_vbyun")]
 position = Vector2(958.568, -189.207)
@@ -79,3 +84,21 @@ position = Vector2(-374.848, -209.843)
 
 [node name="box3" parent="." instance=ExtResource("5_j5klm")]
 position = Vector2(-95.4657, -174.92)
+
+[node name="flag" parent="." instance=ExtResource("6_jiptx")]
+position = Vector2(-214.365, -119.796)
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
+position = Vector2(9.60437, -51.5308)
+shape = SubResource("RectangleShape2D_4kpyl")
+
+[node name="StaticBody2D5" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D5"]
+position = Vector2(222.872, -51.5308)
+shape = SubResource("RectangleShape2D_4kpyl")
+
+[node name="bug" parent="." instance=ExtResource("7_anwd3")]
+position = Vector2(108.904, -58.0609)

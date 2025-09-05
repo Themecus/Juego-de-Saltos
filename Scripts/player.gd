@@ -36,7 +36,7 @@ enum ANIM_STATE {
 	JUMP,
 	HIT,
 	TRANS,
-	DESS
+	DEATH
 }
 
 func _physics_process(delta):
@@ -141,6 +141,10 @@ func update_animation(new_anim_state):
 		ANIM_STATE.HIT:
 			if hit:
 				animat.play("hit")
+		ANIM_STATE.DEATH:
+			animat.play("death")
+			await get_tree().create_timer(0.7).timeout
+			animat.pause()
 
 func move_run(delta):
 	if is_on_floor():
@@ -240,16 +244,21 @@ func _on_body_hitbox_area_entered(area):
 
 # Nueva función para manejar el daño
 func take_damage():
-	can_take_damage = false
-	update_animation(ANIM_STATE.HIT)
-	start_invincibility_effect()
-	# Iniciar temporizador de invencibilidad
-	timer.start(invincibility_time)
+	
 	
 	if !die:
 		PlayerInvetory.life=false
+		update_animation(ANIM_STATE.DEATH)
+		PlayerInvetory.move_block=true
+		await get_tree().create_timer(1.5).timeout
+		PlayerInvetory.move_block=false
 		queue_free()
 	if die:
+		can_take_damage = false
+		update_animation(ANIM_STATE.HIT)
+		start_invincibility_effect()
+		# Iniciar temporizador de invencibilidad
+		timer.start(invincibility_time)
 		die=false
 	#agrega aqui la funcion para remover y agregar los poweups
 

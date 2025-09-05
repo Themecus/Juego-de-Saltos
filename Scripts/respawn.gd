@@ -9,7 +9,7 @@ func _process(delta):
 	else:
 		place=PlayerInvetory.last_respawn_position
 		PlayerInvetory.life=true
-		
+		await get_tree().create_timer(1.5).timeout
 		place_respawn(place)
 		
 func place_respawn(place):
