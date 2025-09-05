@@ -1,4 +1,4 @@
-[gd_scene load_steps=86 format=3 uid="uid://b8jq0dcmlr24f"]
+[gd_scene load_steps=90 format=3 uid="uid://b8jq0dcmlr24f"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_6fwbh"]
 [ext_resource type="Texture2D" uid="uid://dhkrgju4kta8w" path="res://img/Personaje.png" id="1_p8565"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://ci3oic42rwpij" path="res://img/Personaje quieto armadura.png" id="5_ncnx0"]
 [ext_resource type="Texture2D" uid="uid://c14mciglrn7y1" path="res://img/Personaje transformarse.png" id="6_gau44"]
 [ext_resource type="Texture2D" uid="uid://dtixubo8xbv1s" path="res://img/Personaje saltando armadura.png" id="7_kybm3"]
+[ext_resource type="Texture2D" uid="uid://uwctkwi4jubs" path="res://img/Personaje corriendo.png" id="9_hvikr"]
 [ext_resource type="Texture2D" uid="uid://csx6lmwyuicek" path="res://img/Personaje caminando armadura.png" id="10_ee2sg"]
 [ext_resource type="Script" path="res://Scripts/score.gd" id="11_8v02d"]
 [ext_resource type="Texture2D" uid="uid://crq5hmx1hj61f" path="res://img/coleccionable.png" id="11_15kwn"]
@@ -83,6 +84,18 @@ region = Rect2(0, 0, 128, 128)
 [sub_resource type="AtlasTexture" id="AtlasTexture_oi5dj"]
 atlas = ExtResource("7_kybm3")
 region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fejtr"]
+atlas = ExtResource("9_hvikr")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bl53j"]
+atlas = ExtResource("9_hvikr")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1wlcl"]
+atlas = ExtResource("9_hvikr")
+region = Rect2(256, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kkn3f"]
 atlas = ExtResource("6_gau44")
@@ -221,6 +234,20 @@ animations = [{
 }],
 "loop": true,
 "name": &"jump_armor",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fejtr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bl53j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1wlcl")
+}],
+"loop": true,
+"name": &"run",
 "speed": 5.0
 }, {
 "frames": [{
@@ -559,8 +586,7 @@ texture_filter = 1
 position = Vector2(-4, -42)
 scale = Vector2(1.68359, 1.85547)
 sprite_frames = SubResource("SpriteFrames_27e0p")
-animation = &"death"
-frame_progress = 0.649679
+animation = &"run"
 
 [node name="body_solid" type="CollisionShape2D" parent="."]
 position = Vector2(1.35726, -15)

@@ -148,7 +148,7 @@ func update_animation(new_anim_state):
 
 func move_run(delta):
 	if is_on_floor():
-		update_animation(ANIM_STATE.WALK)
+		update_animation(ANIM_STATE.RUN)
 		if Input.is_action_pressed("right"):
 			flip_collisions(false)
 			animat.flip_h=false
@@ -201,7 +201,7 @@ func move_walk():
 		velocity.x = move_toward(velocity.x, 0, speed)
 
  #Función para voltear todas las colisiones
-func flip_collisions(flip_left: bool):
+func flip_collisions(flip_left: bool):#esto es para el tema de girar colisiones
 	var scale_x = abs($body_solid.scale.x) * (-1 if flip_left else 1)
 	
 	# Aplicar a todas las colisiones
