@@ -2,7 +2,7 @@ A,D para moverse
 Espacio para saltar
 Espacio otra vez al ver una pared para hacer un salto mas, pegate a ella y luego presiona
 Shift para correr
-Puedes hacer un salto con correr, solo mantén el correr y presiona el salto
+Puedes hacer un salto con una carrera, solo mantén la carrera y presiona el salto, ten cuidado, no mantengas el salto durante la carrera-salto, solo mantén la carrera y presiona el salto.
 TAB para salir en cualquier momento del juego.
 Puedes dar otro salto al pisar a los enemigos.
 
@@ -10,6 +10,6 @@ A, D to move
 Space to jump
 Space again when you see a wall to do another jump, stick to it and then press
 Shift to run
-You can do a jump with a run, just hold the run key and press jump
+You can do a jump with a run, just hold the run and press the jump, be careful, don't hold the jump during the run-jump, just hold the run and press the jump.
 TAB to exit the game at any time.
 You can take another jump by stepping on enemies.

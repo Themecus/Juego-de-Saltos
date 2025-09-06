@@ -161,12 +161,6 @@ func move_run(delta):
 	else:#esto lo que hace es que cuando dejemos de movernos limpie velocity.x con un zero y no alla residuos
 		velocity.x = move_toward(velocity.x, 0, run_speed)
 
-var jump_just_pressed = false
-
-func _input(event):
-	if event.is_action_pressed("jump"):
-		jump_just_pressed = true
-
 func move_jump():
 	if not is_on_floor():
 		zone_damage.monitoring = true
@@ -176,15 +170,11 @@ func move_jump():
 		zone_damage.monitoring = false
 		zone_damage.monitorable = false
 	
-	# Usar la variable jump_just_pressed
-	if jump_just_pressed and (is_on_floor() or double_jump):
-		jump_just_pressed = false
+	if Input.is_action_pressed("jump") and is_on_floor() or double_jump==true:#para saltar
 		velocity.y = jump_velocity
-		double_jump = false if is_on_floor() else double_jump
-	
-	# Resetear la variable después de usarla
-	
-
+		double_jump=false
+	if is_on_floor():
+		velocity.x = move_toward(velocity.x, 0, speed)
 func move_fall():
 	if not is_on_floor():
 		zone_damage.monitoring = true
