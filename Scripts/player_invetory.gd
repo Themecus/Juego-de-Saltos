@@ -10,4 +10,3 @@ func add_coins(amount: int):
 	print("Monedas totales: ", coins_collected)
 	
 	
-

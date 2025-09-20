@@ -35,4 +35,3 @@ func _on_zone_damage_body_entered(body):
 
 func _on_body_hitbox_area_entered(area):
 	life=false
-

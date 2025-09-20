@@ -20,4 +20,3 @@ func place_respawn(place):
 	
 	
    
-

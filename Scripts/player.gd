@@ -293,5 +293,3 @@ func _on_zone_damage_area_entered(area):
 		double_jump=false
 	if velocity.y > 0:  # Jugador moviéndose hacia abajo
 			velocity.y = -300  # Ajusta este valor para la altura del rebote
-
-
